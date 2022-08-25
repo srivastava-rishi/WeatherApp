@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.splash.SplashActivity">
 
     <RelativeLayout
         android:id="@+id/rlRoot"
@@ -19,7 +19,7 @@
             android:layout_marginTop="@dimen/_4sdp"
             fontPath="fonts/Montserrat-Bold.ttf"
             tools:ignore="MissingPrefix"
-            android:text="Main Activity"
+            android:text="Splash Activity"
             android:textColor="@color/chineseBlack2"
             android:textSize="@dimen/_16ssp" />
 
