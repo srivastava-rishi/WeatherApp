@@ -111,6 +111,12 @@ dependencies {
 
     //EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
+
+    //Easy Permission
+    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
+
+    // Location
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 }
 kapt {
     correctErrorTypes true
