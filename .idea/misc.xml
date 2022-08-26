@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/card_background.xml" value="0.161" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_cloudy.xml" value="0.161" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_drop.xml" value="0.161" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_heavysnow.xml" value="0.161" />
@@ -23,6 +24,8 @@
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/activity_base.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/activity_test.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/view_app_bar.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

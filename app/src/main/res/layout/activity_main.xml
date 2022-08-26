@@ -8,9 +8,8 @@
         android:id="@+id/rlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:background="@drawable/background">
-
+        android:background="@drawable/background"
+        android:fitsSystemWindows="true">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCard"
@@ -74,26 +73,72 @@
 
         </androidx.cardview.widget.CardView>
 
+        <include
+            android:id="@+id/iAppBar"
+            layout="@layout/view_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_alignParentTop="true" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/iAppBar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvDailyForecast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    tools:ignore="MissingPrefix"
+                    android:textColor="@color/ghostWhite"
+                    android:textSize="@dimen/_10ssp"
+                    android:text="@string/daily_forecast"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewPostText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvDailyForecast"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:backgroundTint="@color/transparent2"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="0dp"
+                    android:alpha="0.3"
+                    app:cardPreventCornerOverlap="false">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDailyForecast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/llPost"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:overScrollMode="never"
+                        android:scrollbars="horizontal" />
+
+                </androidx.cardview.widget.CardView>
 
 
 
-        <TextView
-            android:id="@+id/tvLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            fontPath="fonts/Montserrat-Bold.ttf"
-            tools:ignore="MissingPrefix"
-            android:text="Muzaffarnagar"
-            android:textColor="@color/ghostWhite"
-            android:textSize="@dimen/_10ssp" />
 
 
+            </RelativeLayout>
 
 
+        </androidx.core.widget.NestedScrollView>
 
 
     </RelativeLayout>
