@@ -7,7 +7,8 @@
         android:id="@+id/rlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:fitsSystemWindows="true"
+        android:background="@drawable/background">
 
 
         <TextView
@@ -20,7 +21,7 @@
             fontPath="fonts/Montserrat-Bold.ttf"
             tools:ignore="MissingPrefix"
             android:text="Main Activity"
-            android:textColor="@color/chineseBlack2"
+            android:textColor="@color/ghostWhite"
             android:textSize="@dimen/_16ssp" />
 
 

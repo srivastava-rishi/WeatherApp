@@ -1,10 +1,12 @@
 package com.rsstudio.weather.ui.main
 
+
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.rsstudio.weather.R
 import com.rsstudio.weather.databinding.ActivityMainBinding
 import com.rsstudio.weather.ui.base.BaseActivity
+
 
 class MainActivity : BaseActivity() {
 
@@ -13,5 +15,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
     }
 }
