@@ -7,18 +7,22 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rsstudio.weather.R
+import com.rsstudio.weather.data.network.model.Weather
 import com.rsstudio.weather.databinding.ActivityMainBinding
 import com.rsstudio.weather.ui.base.BaseActivity
+import com.rsstudio.weather.ui.main.adapter.DailyForecastAdapter
 import com.rsstudio.weather.ui.main.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.Serializable
 import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity(), View.OnClickListener  {
 
     lateinit var binding: ActivityMainBinding
+
+    private lateinit var dailyForecastAdapter: DailyForecastAdapter
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -30,9 +34,8 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
         //
         initAction()
+        initRecyclerView()
         initObservers()
-
-
     }
 
     private fun initAction() {
@@ -54,7 +57,11 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
         viewModel.weatherData.observe(this) {
 
             if (it.isSuccessful) {
-                Log.d(logTag, "initObservers: "  + it.body())
+                val list: MutableList<Weather> = mutableListOf()
+//                Log.d(logTag, "initObservers: "  + it.body())
+                list.add(it.body()!!)
+                 Log.d(logTag, "list:" + list[0].daily)
+                dailyForecastAdapter.submitList(list[0].daily)
             } else {
                 Log.d(logTag, "error: ${it.errorBody()} ")
             }
@@ -65,6 +72,8 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
 
     }
+
+
 
     private fun search() {
 
@@ -87,6 +96,19 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
 
         }
+    }
+
+    private fun initRecyclerView() {
+        val llm = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.rvDailyForecast.setHasFixedSize(true)
+        binding.rvDailyForecast.layoutManager = llm
+        dailyForecastAdapter = DailyForecastAdapter(this)
+        binding.rvDailyForecast.adapter = dailyForecastAdapter
+
     }
 
     override fun onClick(p0: View?) {

@@ -1,6 +1,5 @@
 package com.rsstudio.weather.ui.main.adapter
 
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
@@ -13,20 +12,18 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.rsstudio.weather.R
-import com.rsstudio.weather.data.network.model.Daily
 import com.rsstudio.weather.data.network.model.Hourly
 import com.rsstudio.weather.ui.main.weather.WeatherType
 import com.rsstudio.weather.util.AppHelper
 
-
-class DailyForecastAdapter(
+class HourlyForecastAdapter(
     private var context: Context,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var list: MutableList<Daily> = mutableListOf()
+    private var list: MutableList<Hourly> = mutableListOf()
     private var sortBy: Int = 0
 
-    var logTag = "@DailyForecastAdapter"
+    var logTag = "HourlyForecastAdapter"
 
     inner class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -74,7 +71,7 @@ class DailyForecastAdapter(
         }
     }
 
-    fun submitList(newList: Daily) {
+    fun submitList(newList: Hourly) {
         list.clear()
         list.add(newList)
         notifyDataSetChanged()
@@ -83,7 +80,7 @@ class DailyForecastAdapter(
 
     override fun getItemCount(): Int {
         if (list.size != 0) {
-            return list[0].time.size
+            return 24;
         }
         return 0
     }
