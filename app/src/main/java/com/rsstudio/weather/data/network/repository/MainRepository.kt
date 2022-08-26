@@ -9,7 +9,7 @@ class MainRepository
 @Inject
 constructor(private val api: WeatherApiInterface) {
 
-    suspend fun getWeatherData(latitude:Float ,longitude:Float): Response<Weather> {
+    suspend fun getWeatherData(latitude: Double, longitude: Double): Response<Weather> {
         return api.getWeatherData(latitude,longitude)
     }
 

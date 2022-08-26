@@ -3,6 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_cloudy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_drop.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_heavysnow.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_pressure.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_rainshower.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_rainy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_rainythunder.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_snowy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_snowyrainy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_sunny.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_sunnycloudy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_sunnyrainy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_thunder.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_very_cloudy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_wind.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ic_windy.xml" value="0.161" />
+        <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/drawable/ripple_1005.xml" value="0.161" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/activity_base.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/rishi/Desktop/CompanyApps/Weather/app/src/main/res/layout/activity_splash.xml" value="0.264" />
