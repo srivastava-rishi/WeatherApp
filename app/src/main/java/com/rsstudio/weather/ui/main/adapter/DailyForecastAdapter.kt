@@ -7,7 +7,9 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -33,6 +35,8 @@ class DailyForecastAdapter(
         var tvDate: TextView = view.findViewById(R.id.tvDate)
         var tvDailyTemperature: TextView = view.findViewById(R.id.tvDailyTemperature)
         var ivWeatherType: ImageView = view.findViewById(R.id.ivWeatherType)
+
+        var container: RelativeLayout = view.findViewById(R.id.rlRoot)
 
         @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n", "ResourceAsColor")
@@ -75,6 +79,7 @@ class DailyForecastAdapter(
 
         val item = list
         if (holder is DailyForecastAdapter.ItemViewHolder) {
+            holder.container.animation = AnimationUtils.loadAnimation(context,R.anim.anim_fade_scale)
             holder.onBind(item[0], position)
         }
     }
