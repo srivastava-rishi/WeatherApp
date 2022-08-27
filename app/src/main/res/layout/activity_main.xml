@@ -90,9 +90,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
+                <TextView
+                    android:id="@+id/tvHourlyForecast"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/hourly_forecast"
+                    android:textColor="@color/white2"
+                    android:textSize="@dimen/_10ssp"
+                    tools:ignore="MissingPrefix" />
+
+                <RelativeLayout
+                    android:id="@+id/cvHourlyForecast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvHourlyForecast"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:minHeight="@dimen/_100sdp"
+                    android:background="@drawable/card_background">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvHourlyForecast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:overScrollMode="never"
+                        android:scrollbars="horizontal" />
+
+                </RelativeLayout>
+
                 <TextView
                     android:id="@+id/tvDailyForecast"
                     fontPath="fonts/Montserrat-Regular.ttf"
+                    android:layout_below="@id/cvHourlyForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
@@ -102,9 +140,8 @@
                     android:textSize="@dimen/_10ssp"
                     tools:ignore="MissingPrefix" />
 
-
                 <RelativeLayout
-                    android:id="@+id/cardViewPostText"
+                    android:id="@+id/cvDailyForecast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvDailyForecast"

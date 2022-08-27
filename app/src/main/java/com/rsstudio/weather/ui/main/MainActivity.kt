@@ -13,6 +13,7 @@ import com.rsstudio.weather.data.network.model.Weather
 import com.rsstudio.weather.databinding.ActivityMainBinding
 import com.rsstudio.weather.ui.base.BaseActivity
 import com.rsstudio.weather.ui.main.adapter.DailyForecastAdapter
+import com.rsstudio.weather.ui.main.adapter.HourlyForecastAdapter
 import com.rsstudio.weather.ui.main.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -23,6 +24,7 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
     lateinit var binding: ActivityMainBinding
 
     private lateinit var dailyForecastAdapter: DailyForecastAdapter
+    private lateinit var hourlyForecastAdapter: HourlyForecastAdapter
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -58,10 +60,17 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
             if (it.isSuccessful) {
                 val list: MutableList<Weather> = mutableListOf()
-//                Log.d(logTag, "initObservers: "  + it.body())
                 list.add(it.body()!!)
-                 Log.d(logTag, "list:" + list[0].daily)
                 dailyForecastAdapter.submitList(list[0].daily)
+
+
+                Log.d(logTag, "hour:${list[0].hourly}")
+
+
+                    hourlyForecastAdapter.submitList(list[0].hourly)
+
+
+
             } else {
                 Log.d(logTag, "error: ${it.errorBody()} ")
             }
@@ -99,6 +108,8 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
     }
 
     private fun initRecyclerView() {
+
+        // daily
         val llm = LinearLayoutManager(
             this,
             LinearLayoutManager.HORIZONTAL,
@@ -108,6 +119,18 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
         binding.rvDailyForecast.layoutManager = llm
         dailyForecastAdapter = DailyForecastAdapter(this)
         binding.rvDailyForecast.adapter = dailyForecastAdapter
+
+        // hourly
+        val llm2 = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.rvHourlyForecast.setHasFixedSize(true)
+        binding.rvHourlyForecast.layoutManager = llm2
+        hourlyForecastAdapter = HourlyForecastAdapter(this)
+        binding.rvHourlyForecast.adapter = hourlyForecastAdapter
+
 
     }
 

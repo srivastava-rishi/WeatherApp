@@ -24,7 +24,6 @@ class DailyForecastAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var list: MutableList<Daily> = mutableListOf()
-    private var sortBy: Int = 0
 
     var logTag = "@DailyForecastAdapter"
 
@@ -36,7 +35,7 @@ class DailyForecastAdapter(
 
         @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n", "ResourceAsColor")
-        fun onBind(item: Hourly, position: Int) {
+        fun onBind(item: Daily, position: Int) {
 
             //
             var pp = WeatherType.fromWMO(item.weathercode[position])

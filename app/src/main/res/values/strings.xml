@@ -4,5 +4,6 @@
 
     //
     <string name="daily_forecast">Daily Forecast</string>
+    <string name="hourly_forecast">Hourly Forecast</string>
 
 </resources>

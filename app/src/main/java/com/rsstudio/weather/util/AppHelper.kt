@@ -30,5 +30,37 @@ class AppHelper {
             return format[2] + "/" + format[1]
         }
 
+        fun getPatternOfHour(date: String): String {
+            val temp = date.split("-").toTypedArray()
+            val dd = temp[2]
+
+            var answer = ""
+
+            for (i in 3 until dd.length) {
+                answer += dd[i]
+            }
+            return answer
+        }
+
+
+        fun compareForMyHourOFTheDay(timeWithCheck:String,actualTime:String): Boolean {
+
+            val temp = timeWithCheck.split("-").toTypedArray()
+            val dd = temp[2]
+
+            var answer = ""
+
+            for (i in 3..4) {
+                answer += dd[i]
+            }
+
+            if (answer == actualTime){
+                return true
+            }
+            return false
+        }
+
+
+
     }
 }
