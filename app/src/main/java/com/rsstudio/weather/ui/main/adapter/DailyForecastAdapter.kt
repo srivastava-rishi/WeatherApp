@@ -31,24 +31,30 @@ class DailyForecastAdapter(
 
         var tvWeek: TextView = view.findViewById(R.id.tvWeek)
         var tvDate: TextView = view.findViewById(R.id.tvDate)
+        var tvDailyTemperature: TextView = view.findViewById(R.id.tvDailyTemperature)
         var ivWeatherType: ImageView = view.findViewById(R.id.ivWeatherType)
 
         @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n", "ResourceAsColor")
         fun onBind(item: Daily, position: Int) {
 
-            //
+            //set icon
             var pp = WeatherType.fromWMO(item.weathercode[position])
             ivWeatherType.setImageResource(pp.iconRes)
+
+            // temperature
+            tvDailyTemperature.text = item.temperature_2m_max[position].toString() + "\u2103"
 
             if (position == 0) {
                 tvWeek.text = "Today"
                 tvDate.text = AppHelper.getPatternOfDate(item.time[position])
+
                 tvWeek.setTextColor(ContextCompat.getColor(context, R.color.yellow))
                 tvDate.setTextColor(ContextCompat.getColor(context, R.color.yellow))
             } else {
                 tvWeek.text = AppHelper.getWeekDayName(item.time[position])
                 tvDate.text = AppHelper.getPatternOfDate(item.time[position])
+
                 tvWeek.setTextColor(ContextCompat.getColor(context, R.color.white2))
                 tvDate.setTextColor(ContextCompat.getColor(context, R.color.white2))
             }

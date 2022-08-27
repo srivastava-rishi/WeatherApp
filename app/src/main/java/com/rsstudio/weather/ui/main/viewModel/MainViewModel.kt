@@ -43,8 +43,6 @@ constructor(
     @SuppressLint("MissingPermission")
     private fun getLocationPoints() {
 
-        Log.d(logTag, "getLocationPoints: " + "line no 46")
-
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(app.applicationContext)
 

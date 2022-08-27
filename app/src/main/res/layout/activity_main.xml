@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.main.MainActivity">
 
     <RelativeLayout
         android:id="@+id/rlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
         android:fitsSystemWindows="true">
 
         <androidx.cardview.widget.CardView
@@ -21,8 +20,8 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:animateLayoutChanges="true"
-            android:visibility="gone"
             android:backgroundTint="@color/ghost_white"
+            android:visibility="gone"
             app:cardCornerRadius="@dimen/_10sdp">
 
 
@@ -78,7 +77,8 @@
             layout="@layout/view_app_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_44sdp"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:visibility="gone" />
 
 
         <androidx.core.widget.NestedScrollView
@@ -86,16 +86,76 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/iAppBar">
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
+                <RelativeLayout
+                    android:id="@+id/rlTemperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_12sdp">
+
+
+                    <ImageView
+                        android:id="@+id/ivWeatherType"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_toLeftOf="@+id/tvTemperature"
+                        android:src="@drawable/sun" />
+
+
+                    <TextView
+                        android:id="@+id/tvTemperature"
+                        fontPath="fonts/Montserrat-Bold.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="28"
+                        android:textColor="@color/white2"
+                        android:textSize="@dimen/_45ssp"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:id="@+id/tvWeatherText"
+                        fontPath="fonts/Montserrat-Regular.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ivWeatherType"
+                        android:layout_centerHorizontal="true"
+                        android:text="Feels like 22.6"
+                        android:textColor="@color/white2"
+                        android:textSize="@dimen/_9ssp"
+                        tools:ignore="MissingPrefix" />
+
+
+                    <TextView
+                        android:id="@+id/tvWeatherCode"
+                        fontPath="fonts/Montserrat-Bold.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvWeatherText"
+                        android:layout_centerHorizontal="true"
+                        android:text="Clear"
+                        android:textColor="@color/white2"
+                        android:textSize="@dimen/_14ssp"
+                        tools:ignore="MissingPrefix" />
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tvHourlyForecast"
                     fontPath="fonts/Montserrat-Regular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlTemperature"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:text="@string/hourly_forecast"
@@ -112,8 +172,8 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
-                    android:minHeight="@dimen/_100sdp"
-                    android:background="@drawable/card_background">
+                    android:background="@drawable/card_background"
+                    android:minHeight="@dimen/_100sdp">
 
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -130,9 +190,9 @@
                 <TextView
                     android:id="@+id/tvDailyForecast"
                     fontPath="fonts/Montserrat-Regular.ttf"
-                    android:layout_below="@id/cvHourlyForecast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/cvHourlyForecast"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:text="@string/daily_forecast"
@@ -149,8 +209,8 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
-                    android:minHeight="@dimen/_100sdp"
-                    android:background="@drawable/card_background">
+                    android:background="@drawable/card_background"
+                    android:minHeight="@dimen/_100sdp">
 
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -165,6 +225,216 @@
                 </RelativeLayout>
 
 
+                <TextView
+                    android:id="@+id/tvWindInfo"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cvDailyForecast"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/wind_info"
+                    android:textColor="@color/white2"
+                    android:textSize="@dimen/_10ssp"
+                    tools:ignore="MissingPrefix" />
+
+                <RelativeLayout
+                    android:id="@+id/cvWindAndPressure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvWindInfo"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@drawable/card_background"
+                    android:minHeight="@dimen/_100sdp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlWindDirection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="@drawable/ripple_1006"
+                        android:minHeight="@dimen/_30sdp">
+
+
+                        <LinearLayout
+                            android:id="@+id/llCompass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <ImageView
+                                android:id="@+id/ivCompass"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:layout_marginEnd="@dimen/_8sdp"
+                                android:layout_toLeftOf="@+id/tvTemperature"
+                                android:src="@drawable/compass"
+                                app:tint="@color/white2" />
+
+
+                            <TextView
+                                android:id="@+id/tvWindDirection"
+                                fontPath="fonts/Montserrat-Regular.ttf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:text="@string/wind_direction"
+                                android:textColor="@color/white2"
+                                android:textSize="@dimen/_9ssp"
+                                tools:ignore="MissingPrefix" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tvWindDirectionValue"
+                            fontPath="fonts/Montserrat-Regular.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:text="293.56"
+                            android:textColor="@color/white2"
+                            tools:ignore="MissingPrefix" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlWindSpeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="@drawable/ripple_1006"
+                        android:layout_below="@+id/rlWindDirection">
+
+
+                        <LinearLayout
+                            android:id="@+id/llWind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <ImageView
+                                android:id="@+id/ivWind"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:layout_marginEnd="@dimen/_8sdp"
+                                android:layout_toLeftOf="@+id/tvTemperature"
+                                android:src="@drawable/wind"
+                                app:tint="@color/white2" />
+
+
+                            <TextView
+                                android:id="@+id/tvWindSpeed"
+                                fontPath="fonts/Montserrat-Regular.ttf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:text="@string/wind_speed"
+                                android:textColor="@color/white2"
+                                android:textSize="@dimen/_9ssp"
+                                tools:ignore="MissingPrefix" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tvWindSpeedValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:text="56"
+
+                            android:textColor="@color/white2"
+                            fontPath="fonts/Montserrat-Regular.ttf"
+                            tools:ignore="MissingPrefix"
+                            android:layout_alignParentEnd="true" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlPressure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="@drawable/ripple_1006"
+                        android:layout_below="@+id/rlWindSpeed">
+
+
+                        <LinearLayout
+                            android:id="@+id/llPressure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <ImageView
+                                android:id="@+id/ivPressure"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:layout_marginEnd="@dimen/_8sdp"
+                                android:layout_toLeftOf="@+id/tvTemperature"
+                                android:src="@drawable/gauge"
+                                app:tint="@color/white2" />
+
+
+                            <TextView
+                                android:id="@+id/tvPressure"
+                                fontPath="fonts/Montserrat-Regular.ttf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:text="@string/pressure"
+                                android:textColor="@color/white2"
+                                android:textSize="@dimen/_9ssp"
+                                tools:ignore="MissingPrefix" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tvPressureValue"
+                            fontPath="fonts/Montserrat-Regular.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:text="669"
+                            android:textColor="@color/white2"
+                            tools:ignore="MissingPrefix" />
+
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
 
 
 
@@ -172,6 +442,21 @@
 
 
         </androidx.core.widget.NestedScrollView>
+
+
+        <include
+            android:id="@+id/iError"
+            layout="@layout/view_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include
+            android:id="@+id/iLoader"
+            layout="@layout/view_loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
 
 
     </RelativeLayout>

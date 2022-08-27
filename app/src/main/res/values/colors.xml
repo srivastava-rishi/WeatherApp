@@ -83,5 +83,6 @@
 
     //
     <color name="yellow">#EDE123</color>
+    <color name="grey">#dddddd</color>
 
 </resources>

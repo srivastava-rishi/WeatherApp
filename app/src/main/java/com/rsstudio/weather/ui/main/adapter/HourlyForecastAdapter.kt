@@ -26,11 +26,12 @@ class HourlyForecastAdapter(
     private var list: MutableList<Hourly> = mutableListOf()
     private var currentHour: String = ""
 
-    var logTag = "HourlyForecastAdapter"
+    var logTag = "@HourlyForecastAdapter"
 
     inner class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var tvDate: TextView = view.findViewById(R.id.tvDate)
+        var tvHourlyTemperature: TextView = view.findViewById(R.id.tvHourlyTemperature)
         var ivWeatherType: ImageView = view.findViewById(R.id.ivWeatherType)
 
         @RequiresApi(Build.VERSION_CODES.O)
@@ -41,10 +42,10 @@ class HourlyForecastAdapter(
             var pp = WeatherType.fromWMO(item.weathercode[position])
             ivWeatherType.setImageResource(pp.iconRes)
 
+            // temperature
+            tvHourlyTemperature.text = item.temperature_2m[position].toString() + "\u2103"
+
             var temp = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-
-            Log.d(logTag, "temp: $temp")
-
 
             var currentHour = ""
             currentHour = if(temp < 10){

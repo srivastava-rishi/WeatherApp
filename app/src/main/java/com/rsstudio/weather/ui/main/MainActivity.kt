@@ -1,6 +1,7 @@
 package com.rsstudio.weather.ui.main
 
 
+import android.annotation.SuppressLint
 import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.rsstudio.weather.ui.base.BaseActivity
 import com.rsstudio.weather.ui.main.adapter.DailyForecastAdapter
 import com.rsstudio.weather.ui.main.adapter.HourlyForecastAdapter
 import com.rsstudio.weather.ui.main.viewModel.MainViewModel
+import com.rsstudio.weather.ui.main.weather.WeatherType
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -36,7 +38,7 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
         //
         initAction()
-        initRecyclerView()
+        initRecyclerViews()
         initObservers()
     }
 
@@ -44,15 +46,17 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
         binding.ivSearch.setOnClickListener(this)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initObservers() {
 
         viewModel.locationPointsData.observe(this) {
 
             if (it != null) {
-                Log.d(logTag, "initObservers: $it")
                 viewModel.getWeatherData(it[0],it[1])
             }else{
-                //
+                binding.iLoader.visibility = View.GONE
+                binding.iError.tvError.text = "Got some problem in getting location please restart the app"
+                binding.iError.rlRoot.visibility = View.VISIBLE
             }
         }
 
@@ -62,17 +66,32 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
                 val list: MutableList<Weather> = mutableListOf()
                 list.add(it.body()!!)
                 dailyForecastAdapter.submitList(list[0].daily)
+                hourlyForecastAdapter.submitList(list[0].hourly)
 
+                //
+                var pp = WeatherType.fromWMO(list[0].daily.weathercode[0])
+                binding.ivWeatherType.setImageResource(pp.iconRes)
+                binding.tvWeatherCode.text = pp.weatherDesc
 
-                Log.d(logTag, "hour:${list[0].hourly}")
+                //
+                binding.tvTemperature.text = list[0].daily.temperature_2m_max[0].toString() + "\u2103"
+                binding.tvWeatherText.text = "Feels"+ " " +"like" + " "  +(list[0].daily.temperature_2m_max[0] - 0.5).toString() + "\u2103"
 
+                //
+                binding.tvWindDirectionValue.text = list[0].hourly.windspeed_10m[0].toString() + "WNW"
+                binding.tvWindSpeedValue.text = list[0].hourly.relativehumidity_2m[0].toString() +  "km/h"
+                binding.tvPressureValue.text = list[0].hourly.pressure_msl[0].toString()+"hPa"
 
-                    hourlyForecastAdapter.submitList(list[0].hourly)
-
+                //
+                binding.rlRoot.setBackgroundResource(R.drawable.background)
+                binding.iLoader.visibility = View.GONE
 
 
             } else {
                 Log.d(logTag, "error: ${it.errorBody()} ")
+                binding.iLoader.visibility = View.GONE
+                binding.iError.tvError.text = it.errorBody().toString()
+                binding.iError.rlRoot.visibility = View.VISIBLE
             }
 
 
@@ -83,7 +102,7 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
     }
 
 
-
+    // for searching location
     private fun search() {
 
         var searchText = binding.searchInput.text
@@ -91,6 +110,7 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
         if (searchText.isNotEmpty() || searchText != null) {
 
             try{
+                // get latitude and longitude through geocoder
                 val  gc = Geocoder(this)
                 var addresses = gc.getFromLocationName(searchText.toString(),2)
                 var address = addresses[0]
@@ -107,7 +127,7 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
         }
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerViews() {
 
         // daily
         val llm = LinearLayoutManager(

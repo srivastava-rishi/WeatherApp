@@ -21,7 +21,7 @@ sealed class WeatherType(
     )
     object Overcast : WeatherType(
         weatherDesc = "Overcast",
-        iconRes = R.drawable.ic_snowyrainy
+        iconRes = R.drawable.cloudy
     )
     object Foggy : WeatherType(
         weatherDesc = "Foggy",
