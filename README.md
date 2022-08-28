@@ -12,4 +12,4 @@ It is a weather forecasting application.
 * I can also make searching for getting the weather of different location.
 
 # App Gifs
-![w](https://user-images.githubusercontent.com/84356050/187014195-8c2c38c7-6240-457f-9bda-a6f24ae6e3da.gif)
+![weather555](https://user-images.githubusercontent.com/84356050/187085907-a2808495-fcfe-4a0d-b535-ad0e056669a0.gif)

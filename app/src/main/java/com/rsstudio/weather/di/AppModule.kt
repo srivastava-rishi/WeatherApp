@@ -3,6 +3,7 @@ package com.rsstudio.weather.di
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.rsstudio.weather.app.App
+import com.rsstudio.weather.data.local.preference.PreferenceProvider
 import com.rsstudio.weather.data.network.apis.WeatherApiInterface
 import com.rsstudio.weather.util.Constant
 import dagger.Module
@@ -22,6 +23,12 @@ object AppModule {
     @Provides
     fun applicationContext( @ApplicationContext applicationContext: Context) : App {
         return applicationContext as App
+    }
+
+    @Singleton
+    @Provides
+    fun preferenceProvider(@ApplicationContext applicationContext: Context): PreferenceProvider {
+        return PreferenceProvider(applicationContext)
     }
 
     @Singleton

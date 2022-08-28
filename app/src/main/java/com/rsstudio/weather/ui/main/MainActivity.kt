@@ -17,11 +17,11 @@ import com.rsstudio.weather.ui.main.adapter.DailyForecastAdapter
 import com.rsstudio.weather.ui.main.adapter.HourlyForecastAdapter
 import com.rsstudio.weather.ui.main.viewModel.MainViewModel
 import com.rsstudio.weather.ui.main.weather.WeatherType
+import com.rsstudio.weather.util.GetTimeAgo
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity(), View.OnClickListener  {
+class MainActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var binding: ActivityMainBinding
 
@@ -44,6 +44,20 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
     private fun initAction() {
         binding.ivSearch.setOnClickListener(this)
+
+        binding.srlSwipeRefresh.setOnRefreshListener {
+
+            binding.srlSwipeRefresh.isRefreshing = true
+            viewModel.locationPointsData
+            viewModel.getWeatherData(
+                pref.getLatitude().toDouble(),
+                pref.getLongitude().toDouble()
+            )
+            pref.saveLastRefreshedTime(System.currentTimeMillis())
+
+
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -52,11 +66,7 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
         viewModel.locationPointsData.observe(this) {
 
             if (it != null) {
-                viewModel.getWeatherData(it[0],it[1])
-            }else{
-                binding.iLoader.visibility = View.GONE
-                binding.iError.tvError.text = "Got some problem in getting location please restart the app"
-                binding.iError.rlRoot.visibility = View.VISIBLE
+                viewModel.getWeatherData(it[0], it[1])
             }
         }
 
@@ -74,16 +84,37 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
                 binding.tvWeatherCode.text = pp.weatherDesc
 
                 //
-                binding.tvTemperature.text = list[0].daily.temperature_2m_max[0].toString() + "\u2103"
-                binding.tvWeatherText.text = "Feels"+ " " +"like" + " "  +(list[0].daily.temperature_2m_max[0] - 0.5).toString() + "\u2103"
+                binding.tvTemperature.text =
+                    list[0].daily.temperature_2m_max[0].toString() + "\u2103"
+                binding.tvWeatherText.text =
+                    "Feels" + " " + "like" + " " + (list[0].daily.temperature_2m_max[0] - 0.5).toString() + "\u2103"
 
                 //
-                binding.tvWindDirectionValue.text = list[0].hourly.windspeed_10m[0].toString() + "WNW"
-                binding.tvWindSpeedValue.text = list[0].hourly.relativehumidity_2m[0].toString() +  "km/h"
-                binding.tvPressureValue.text = list[0].hourly.pressure_msl[0].toString()+"hPa"
+                binding.tvWindDirectionValue.text =
+                    list[0].hourly.windspeed_10m[0].toString() + "WNW"
+                binding.tvWindSpeedValue.text =
+                    list[0].hourly.relativehumidity_2m[0].toString() + "km/h"
+                binding.tvPressureValue.text = list[0].hourly.pressure_msl[0].toString() + "hPa"
 
                 //
                 binding.rlRoot.setBackgroundResource(R.drawable.background)
+                binding.topView.visibility = View.VISIBLE
+                //
+                binding.tvLocation.text = pref.getAddress()
+
+                // time
+                //
+                Log.d(logTag, "initObservers: " + pref.getLastRefreshedTime())
+                if (pref.getLastRefreshedTime().toInt() == 0) {
+                    binding.tvTime.text =
+                        GetTimeAgo.getTimeAgo(System.currentTimeMillis(), this)
+                    pref.saveLastRefreshedTime(System.currentTimeMillis())
+                } else {
+                    binding.tvTime.text =
+                        GetTimeAgo.getTimeAgo(pref.getLastRefreshedTime(), this)
+                }
+
+                binding.srlSwipeRefresh.isRefreshing = false
                 binding.iLoader.visibility = View.GONE
 
 
@@ -98,9 +129,7 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
         }
 
 
-
     }
-
 
     // for searching location
     private fun search() {
@@ -109,17 +138,17 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
         if (searchText.isNotEmpty() || searchText != null) {
 
-            try{
+            try {
                 // get latitude and longitude through geocoder
-                val  gc = Geocoder(this)
-                var addresses = gc.getFromLocationName(searchText.toString(),2)
+                val gc = Geocoder(this)
+                var addresses = gc.getFromLocationName(searchText.toString(), 2)
                 var address = addresses[0]
 
                 Log.d(logTag, "searchText: $searchText")
                 Log.d(logTag, "search: " + address.latitude)
                 Log.d(logTag, "search: " + address.longitude)
                 Log.d(logTag, "search: " + address.locality)
-            }catch(e:Exception){
+            } catch (e: Exception) {
                 Log.d(logTag, "search: " + e.message)
             }
 
@@ -156,12 +185,14 @@ class MainActivity : BaseActivity(), View.OnClickListener  {
 
     override fun onClick(p0: View?) {
 
-        when(p0?.id){
+        when (p0?.id) {
 
             R.id.ivSearch -> {
-              search()
+                search()
             }
 
         }
     }
+
+
 }

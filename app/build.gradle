@@ -122,6 +122,7 @@ dependencies {
     // don't forget to implement this
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
+
 }
 kapt {
     correctErrorTypes true
